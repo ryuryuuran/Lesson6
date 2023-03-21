@@ -63,43 +63,66 @@
       ]
     };
 
-    $(function () {
-      $('.js-fortune-start').on('click', result2)
+    $(document).on('click', '.js-fortune-start', function () {
+      for (title in fortuneResults) {
+        const rand = Math.floor(Math.random() * 3);
+        const $target = $('.' + title);
+
+
+        $target.find('.stars').text(fortuneResults[title][rand]['stars']);
+        $target.find('.detail').text(fortuneResults[title][rand]['detail']);
+      }
+
+      $('.js-fortune-start').toggleClass('js-fortune-restart');
+      $('.js-fortune-restart').text('もう一度占う');
+      $('.result').fadeIn(500);
     });
 
-    $(function () {
-      $('.start-button').on('click', function () {
-        if ($(this).text() === '運勢を占う') {
-          $(".start-button").toggleClass("restart");
-          $('.result').css("display", "block");
-          $(".restart").html("もう一度占う");
-        } else {
-          $(this).html('運勢を占う');
-          $('.result').css("display", "none");
-        }
-      })
-    })
+    $(document).on('click', '.js-fortune-restart', function () {
+      $('.js-fortune-restart').toggleClass('js-fortune-start');
+      $('.js-fortune-start').text('運勢を占う!');
+      $('.result').fadeOut(100);
+    });
 
-    function result2() {
-      for (let key in fortuneResults) {
-        let fortuneNum = Math.floor(Math.random() * 3);
-        let anserStr = fortuneResults[key][fortuneNum].stars;
-        let anserDet = fortuneResults[key][fortuneNum].detail;
 
-        if (key == "money") {
-          $('.radius.money .stars').html(anserStr);
-          $('.radius.money .detail').html(anserDet);
-        }
-        else if (key == "work") {
-          $('.radius.work .stars').html(anserStr);
-          $('.radius.work .detail').html(anserDet);
-        }
-        else if (key == "health") {
-          $('.radius.health .stars').html(anserStr);
-          $('.radius.health .detail').html(anserDet);
-        }
-      }
-    }
+
+
+    //   $('.js-fortune-start').on('click', result2)
+    // });
+
+    // $(function () {
+    //   $('.start-button').on('click', function () {
+    //     if ($(this).text() === '運勢を占う') {
+    //       $(".start-button").toggleClass("restart");
+    //       $('.result').css("display", "block");
+    //       $(".restart").html("もう一度占う");
+    //     } else {
+    //       $(this).html('運勢を占う');
+    //       $('.result').css("display", "none");
+    //     }
+    //   })
+    // })
+
+    // function result2() {
+    //   for (let key in fortuneResults) {
+    //     let fortuneNum = Math.floor(Math.random() * 3);
+    //     let anserStr = fortuneResults[key][fortuneNum].stars;
+    //     let anserDet = fortuneResults[key][fortuneNum].detail;
+
+    //     if (key == "money") {
+    //       $('.radius.money .stars').html(anserStr);
+    //       $('.radius.money .detail').html(anserDet);
+    //     }
+    //     else if (key == "work") {
+    //       $('.radius.work .stars').html(anserStr);
+    //       $('.radius.work .detail').html(anserDet);
+    //     }
+    //     else if (key == "health") {
+    //       $('.radius.health .stars').html(anserStr);
+    //       $('.radius.health .detail').html(anserDet);
+    //     }
+    //   }
+    // }
 
   </script>
 </body>
