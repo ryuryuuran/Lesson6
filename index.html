@@ -64,6 +64,7 @@
     };
 
     $(document).on('click', '.js-fortune-start', function () {
+      console.log('1')
       for (title in fortuneResults) {
         const rand = Math.floor(Math.random() * 3);
         const $target = $('.' + title);
@@ -73,13 +74,14 @@
         $target.find('.detail').text(fortuneResults[title][rand]['detail']);
       }
 
-      $('.js-fortune-start').toggleClass('js-fortune-restart');
+      $('.js-fortune-start').toggleClass('js-fortune-restart js-fortune-start');
       $('.js-fortune-restart').text('もう一度占う');
       $('.result').fadeIn(500);
     });
 
     $(document).on('click', '.js-fortune-restart', function () {
-      $('.js-fortune-restart').toggleClass('js-fortune-start');
+      console.log('2')
+      $('.js-fortune-restart').toggleClass('js-fortune-start js-fortune-restart');
       $('.js-fortune-start').text('運勢を占う!');
       $('.result').fadeOut(100);
     });
